@@ -95,7 +95,16 @@ The bundled `whisper-cli`, `ffmpeg` and `ffprobe` are signed together with the a
 
 ### App icon
 
-Without an icon, the default Electron icon is used. Put a 1024×1024 `icon.icns` (or `icon.png`) in a `build/` folder at the project root, and electron-builder picks it up automatically.
+The app icon is `build/icon.png` (1024×1024, transparent background), which electron-builder converts to `.icns` automatically. It must follow Apple's macOS icon grid: the rounded-square body is 824×824, centred, with 100 px of transparent margin on every side. macOS 26 places icons that don't match this shape, such as artwork that runs to the edge of the canvas, on a light "plate", which shows up as a white border around the icon. `build/icon-source.png` is the original artwork. To regenerate the icon from it, crop to the rounded square, scale that to 824×824 and pad it to 1024×1024:
+
+```bash
+# crop=W:H:X:Y is the rounded square's bounding box in icon-source.png (1104×1079 at 75,88 for the current artwork)
+node_modules/ffmpeg-static/ffmpeg -y -i build/icon-source.png \
+  -vf "crop=1104:1079:75:88,scale=824:824:flags=lanczos,format=rgba,pad=1024:1024:100:100:color=0x00000000" \
+  -frames:v 1 build/icon.png
+```
+
+If the source artwork already fills its whole canvas, drop the `crop=…,` step.
 
 ## Intel builds
 

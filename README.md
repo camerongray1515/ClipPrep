@@ -1,3 +1,5 @@
+<p align="center"><img src="build/icon.png" alt="ClipPrep icon" width="128"></p>
+
 # ClipPrep
 
 [![AI-DECLARATION: copilot](https://img.shields.io/badge/䷼%20AI--DECLARATION-copilot-fee2e2?labelColor=fee2e2)](AI-DECLARATION.md)
