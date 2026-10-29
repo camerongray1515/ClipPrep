@@ -1,0 +1,60 @@
+{
+  "name": "clipprep",
+  "version": "0.1.0",
+  "description": "Prepare clips for Final Cut Pro: detect cue tones and retakes, export cuts as FCPXML keyword ranges",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "analyze": "node scripts/analyze-cli.js",
+    "dist": "electron-builder --mac"
+  },
+  "author": "Cameron Gray",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "ffprobe-static": "^3.1.0"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "productName": "ClipPrep",
+  "build": {
+    "appId": "app.clipprep",
+    "productName": "ClipPrep",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "!node_modules/ffprobe-static/bin/**",
+      "node_modules/ffprobe-static/bin/darwin/${arch}/**"
+    ],
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**",
+      "node_modules/ffprobe-static/**"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/whisper/${arch}",
+        "to": "whisper",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.video"
+    }
+  },
+  "os": [
+    "darwin"
+  ]
+}

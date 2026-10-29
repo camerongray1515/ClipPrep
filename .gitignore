@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Build output (electron-builder)
+dist/
+
+# Locally built binaries bundled into the app (see docs/BUILDING.md)
+vendor/
+
+# Footage and exports used for local testing
+Sample Footage/
+*.fcpxml
+*.fcpxmld/
+
+# Media files
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.mxf
+*.MXF
+
+# Whisper models (downloaded at runtime into the app's data folder)
+*.bin
+
+# Logs and debug output
+npm-debug.log*
+*.log
+builder-debug.yml
+
+# Environment / signing secrets
+.env
+.env.*
+*.p12
+*.cer
+*.provisionprofile
+
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.Spotlight-V100
+.Trashes
+
+# Editors
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self' file:; img-src 'self' data:; style-src 'self' 'unsafe-inline'" />
+  <title>ClipPrep</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="titlebar">
+    <div class="brand">ClipPrep</div>
+    <div class="actions">
+      <button id="btn-add" class="btn">Add Clips…</button>
+      <button id="btn-analyze" class="btn">Analyse All</button>
+      <span class="sep"></span>
+      <label class="check"><input type="checkbox" id="chk-open-fcp" checked /> Open in Final Cut</label>
+      <button id="btn-export" class="btn primary">Export FCPXML…</button>
+      <button id="btn-settings" class="btn icon" title="Settings">⚙︎</button>
+    </div>
+  </header>
+
+  <div id="engine-banner" class="banner hidden"></div>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <span>Clips</span>
+        <span id="clip-count" class="muted"></span>
+      </div>
+      <ul id="clip-list" class="clip-list"></ul>
+      <div id="drop-hint" class="drop-hint">Drop video files here<br /><span class="muted">or use Add Clips…</span></div>
+    </aside>
+
+    <section id="detail" class="detail empty">
+      <div class="empty-state">Select a clip to review its cuts.</div>
+
+      <div class="viewer">
+        <div class="video-wrap">
+          <video id="video" preload="metadata"></video>
+          <div id="video-overlay" class="video-overlay hidden"></div>
+        </div>
+        <div class="transport">
+          <button id="btn-play" class="btn icon" title="Play/pause (space)">▶︎</button>
+          <span id="timecode" class="timecode">0:00.00</span>
+          <label class="check"><input type="checkbox" id="chk-skip" /> Skip cuts (preview result)</label>
+          <span class="spacer"></span>
+          <span id="clip-summary" class="muted"></span>
+        </div>
+        <canvas id="timeline" class="timeline" height="96"></canvas>
+        <div class="legend">
+          <span><i class="sw retake"></i>Retake Cut</span>
+          <span><i class="sw uncertain"></i>Maybe Cut</span>
+          <span><i class="sw tone"></i>Cue tone</span>
+        </div>
+      </div>
+
+      <div class="panes">
+        <div class="pane">
+          <div class="pane-head">Cue tones</div>
+          <div id="tones" class="tones"></div>
+        </div>
+        <div class="pane">
+          <div class="pane-head">Transcript</div>
+          <div id="transcript" class="transcript"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="settings" class="drawer hidden">
+    <div class="drawer-head">
+      <span>Settings</span>
+      <button id="btn-close-settings" class="btn icon">✕</button>
+    </div>
+    <div id="settings-body" class="drawer-body"></div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
